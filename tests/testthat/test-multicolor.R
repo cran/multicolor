@@ -1,8 +1,8 @@
 library(crayon)
+library(testthat)
 
 context("multicolor")
 
-# skip_if_not(use_color())
 skip_on_os("windows")
 
 test_that("baseline works", {
@@ -108,6 +108,8 @@ test_that("colors(), including grays, rainbow, and rbg work", {
     )
   )
 
+
+
   # Multiple of the same colors
   expect_equal(
     multi_color("asdfjkl;asdfjk;",
@@ -139,22 +141,38 @@ test_that("integration with cowsay", {
 })
 
 
-# test_that("warnings", {
-#   expect_silent(
-#     suppressWarnings(multi_color(
-#       txt = cowsay::animals[["yoda"]],
-#       type = "warning",
-#       colors = c("rainbow", "rainbow")
-#     ))
-#   )
-#
-#   expect_silent(
-#     suppressWarnings(multi_color(
-#       txt = "small text",
-#       type = "warning"
-#     ))
-#   )
-# })
+test_that("warnings don't get truncated", {
+  expect_silent(
+    suppressMessages(
+      suppressWarnings(multi_color(
+        txt = cowsay::animals[["yoda"]],
+        type = "warning",
+        colors = c("rainbow", "rainbow")
+      ))
+    )
+  )
+
+  expect_silent(
+    suppressMessages(
+      suppressWarnings(multi_color(
+        txt = "small text",
+        type = "warning"
+      ))
+    )
+  )
+
+  long_text <- rep("lorem ipsum", 681) %>% # longer than max warning length
+    stringr::str_c(collapse = " ")
+
+  expect_silent(
+    suppressMessages(
+      suppressWarnings(multi_color(
+        txt = long_text,
+        type = "warning"
+      ))
+    )
+  )
+})
 
 
 test_that("utils", {
@@ -202,5 +220,29 @@ test_that("utils", {
   expect_equal(
     nix_first_newline("foobar"),
     "foobar"
+  )
+})
+
+
+test_that("crawl works", {
+  expect_output(crawl())
+
+  skip_if_not(use_color())
+  expect_error(
+    crawl(colors = c(
+      "seafoamgreen",
+      "green"
+    )) # bad colors
+  )
+
+  expect_error(
+    crawl(pause = -1) # invalid time between chars
+  )
+
+  expect_error(
+    crawl(colors = c(
+      "seafoamgreen",
+      "green"
+    )) # bad colors
   )
 })
