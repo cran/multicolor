@@ -10,7 +10,7 @@
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
 #' are fair game.
-#' @param type (character) Message (default), warning, or string.
+#' @param type (character) "message" (the default), "warning", "string", or "rmd". If "rmd" is used, the type of the RMarkdown document should be \code{html_document} the chunk option \code{results = "asis"} should be used.
 #' @param direction (character) How should the colors be spread? One of
 #' "horizontal" or "vertical".
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
@@ -65,11 +65,11 @@ multi_color <- function(txt = "hello world!",
                         direction = "vertical",
                         recycle_chars = FALSE,
                         ...) {
-  if (!type %in% c("message", "warning", "string", "crawl")) {
+  if (!type %in% c("message", "warning", "string", "rmd", "crawl")) {
     stop("type must be one of message, or string")
   }
 
-  if (use_color() == FALSE) {
+  if (use_color() == FALSE && type != "rmd") {
     message("Auto-setting type to string.")
     type <- "string"
   }
@@ -79,6 +79,9 @@ multi_color <- function(txt = "hello world!",
   if (!any(is.character(colors))) {
     stop("All multi colors must be of class character.")
   }
+
+  direction <- match.arg(direction, c("vertical", "horizontal"))
+  if (is.na(direction)) stop("direction must be 'horizontal' or 'vertical'.")
 
   colors <- insert_rainbow(colors)
   n_colors_base <- length(colors)
@@ -251,10 +254,11 @@ multi_color <- function(txt = "hello world!",
       ) %>%
       dplyr::ungroup() %>%
       dplyr::group_by(line_id) %>%
-      # Add a newline after every line
+      # Add a close tag and newline after every line
+      # (Newline esp important when following text is not colored)
       dplyr::mutate(
         res = dplyr::case_when(
-          char_num == max(char_num) ~ tagged %>% paste("\n", sep = ""),
+          char_num == max(char_num) ~ tagged %>% paste(close_tag, "\n", sep = ""),
           TRUE ~ tagged
         )
       )
@@ -274,7 +278,7 @@ multi_color <- function(txt = "hello world!",
   }
 
   # Set warning length so it's not truncated
-  if (type == "warning") {
+  if (type == "warning") { # nocov start
     if (nchar(out) < 100) {
       wl <- 100
     } else if (nchar(out) > 8170) {
@@ -284,11 +288,16 @@ multi_color <- function(txt = "hello world!",
     }
     warn_op <- options(warning.length = wl)
     on.exit(options(warn_op))
+  } # nocov end
+
+  if (type == "rmd") {
+    rmd <- out %>% fansi::sgr_to_html()
   }
 
   switch(type,
-    message = message(out),
-    warning = warning(out),
+    message = message(out), # nocov
+    warning = warning(out), # nocov
+    rmd = rmd,
     string = out
   )
 }

@@ -15,17 +15,18 @@ Apply multiple colors to your messages, warnings, and errors. Built on
 the [`crayon`](https://github.com/r-lib/crayon) package. Pairs nicely
 with [`cowsay`](https://github.com/sckott/cowsay). The [blog
 post](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/) has
-a bit of backstory and walkthrough of how it works.
+a bit of backstory and walkthrough of how it
+works.
 
-<!-- <p align="left"> -->
+<p align="left">
 
-<!--   <img src="./man/img/whale.gif" alt="whale"> -->
+<img src="https://media.giphy.com/media/8YNM4kP4NnFrvkIhVM/giphy.gif" alt="whale" height="310px">
 
-<!-- </p> -->
+</p>
 
 ### Installation
 
-Stable, from CRAN (does not include `crawl`):
+Stable, from CRAN:
 
 ``` r
 install.packages("multicolor")
@@ -39,6 +40,8 @@ devtools::install_github("aedobbyn/multicolor")
 
 *Note*: colors cannot be applied in the R GUI and certain other
 environments. RStudio or any terminal should work fine<sup>1</sup>.
+[RMarkdown](https://github.com/aedobbyn/multicolor/blob/dev/vignettes/rmd.Rmd)
+is also in play 👍.
 
 ## Usage
 
@@ -64,18 +67,18 @@ If you want to unveil your creation slowly (as @cortinah’s whale gif
 above), use **`crawl`**. You can vary the speed with the `pause`
 argument.
 
-<!-- <p align="left"> -->
+<p align="left">
 
-<!--   <img src="./man/img/green_chicken_hd.gif" alt="chicken"> -->
+<img src="https://media.giphy.com/media/7Wsh1CNjLSS0ddgSnl/giphy.gif" height="310px" alt="chicken">
 
-<!-- </p> -->
+</p>
 
 #### Options
 
 The text supplied will be divided into even(ish) chunks of those colors
 when **`recycle_chars`** is false. If it’s true, each color will apply
 to a single character, and the `colors` vector will be recycled over the
-lenght of the input string supplied.
+length of the input string supplied.
 
 Any character vector of R colors or hex values are fair game.
 
@@ -119,6 +122,10 @@ multi_color("The wild avocado grows in subtropical jungles, so the new sprout ha
 <img src="./man/img/avocado_a.jpg" alt="avocado_a" height="55px">
 
 </p>
+
+You can use [`multicolor` in RMarkdown
+documents](https://github.com/aedobbyn/multicolor/blob/dev/vignettes/rmd.Rmd)
+with `type = "rmd"`.
 
 ### ASCII art with [`cowsay`](https://github.com/sckott/cowsay)
 
@@ -202,6 +209,7 @@ That’s it\! PRs & bug reports v welcome. 🎨
 <sup>1</sup> If coloring isn’t possible, you’ll get a warning on load
 and every time `multi_color` evaluates. The `type` argument will
 auto-set to `"string"`. To check how these environments are determined,
-see `multicolor:::use_color`. If using `multicolor` in another package,
-you might consider inserting a replacement for the case when this
-evaluates to `FALSE`.
+see
+[`multicolor:::use_color`](https://github.com/aedobbyn/multicolor/blob/dev/R/utils.R#L13).
+If using `multicolor` in another package, you might consider inserting a
+replacement for the case when this evaluates to `FALSE`.
