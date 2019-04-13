@@ -3,9 +3,11 @@
 #' @importFrom magrittr %>%
 #' @export
 #'
-#' @param txt (character) Some text to color.
+#' @param txt (character) Some text to color. \href{https://github.com/sckott/cowsay}{\code{cowsay}} animals are available in a list of \code{multicolor::things}, e.g. \code{things$cow}.
 #' @param colors (character) A vector of colors, defaulting to
 #' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
+#'
+#' Several out-of-the-box palettes are available; see \code{multicolor::palettes}.
 #'
 #' Must all be \href{https://github.com/r-lib/crayon#256-colors}{\code{crayon}}-supported
 #' colors. Any colors in \code{colors()} or hex values (see \code{?rgb})
@@ -16,6 +18,7 @@
 #' @param recycle_chars (logical) Should the vector of colors supplied apply to the entire string or
 #' should it apply to each individual character (if \code{direction} is vertical)
 #' or line (if \code{direction} is horizontal), and be recycled?
+#' @param add_leading_newline Should a newline be added at the beginning of the text? Useful for \code{cowsay} animals when \code{type = "rmd"}.
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
@@ -31,8 +34,8 @@
 #'
 #' multi_color("ahoy")
 #'
-# multi_color("taste the rainbow",
-#             c("rainbow", "cyan", "cyan", "rainbow"))
+#' multi_color("taste the rainbow",
+#'             c("rainbow", "cyan", "cyan", "rainbow"))
 #' multi_color("taste the rainbow",
 #'             c("mediumpurple",
 #'               "rainbow",
@@ -43,8 +46,11 @@
 #'                        rgb(0.2, 0.9, 0.1)))
 #'
 #' multi_color(
-#'   cowsay::animals[["buffalo"]],
+#'   things$buffalo,
 #'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
+#'
+#' # Built-in color palette
+#' multi_color(things$cow, colors = palettes$lacroix)
 #'
 #' multi_color(cowsay:::rms, sample(colors(), 10))
 #'
@@ -64,6 +70,7 @@ multi_color <- function(txt = "hello world!",
                         type = "message",
                         direction = "vertical",
                         recycle_chars = FALSE,
+                        add_leading_newline = FALSE,
                         ...) {
   if (!type %in% c("message", "warning", "string", "rmd", "crawl")) {
     stop("type must be one of message, or string")
@@ -290,14 +297,25 @@ multi_color <- function(txt = "hello world!",
     on.exit(options(warn_op))
   } # nocov end
 
+  if (add_leading_newline) {
+    out <- stringr::str_c("\n", out, collapse = "")
+  }
+
   if (type == "rmd") {
-    rmd <- out %>% fansi::sgr_to_html()
+    out <- out %>%
+      stringr::str_replace_all("\u0020", "&nbsp;") %>%
+      stringr::str_replace_all("\n", "<br>") %>%
+      stringr::str_replace_all("\u0060", "\u2018") %>%
+      stringr::str_replace_all("_", "\u0332")
+
+    rmd <- noquote(out) %>%
+      fansi::sgr_to_html()
   }
 
   switch(type,
     message = message(out), # nocov
     warning = warning(out), # nocov
-    rmd = rmd,
+    rmd = rmd, # nocov
     string = out
   )
 }
@@ -309,23 +327,26 @@ multi_color <- function(txt = "hello world!",
 #' @importFrom magrittr %>%
 #' @export
 #'
-#' @param txt (character) Some text to colour.
+#' @param txt (character) Some text to colour. \href{https://github.com/sckott/cowsay}{\code{cowsay}} animals are available in a list of \code{multicolour::things}, e.g. \code{things$cow}.
 #' @param colors (character) A vector of colours, defaulting to
 #' "rainbow", i.e. c("red", "orange", "yellow", "green", "blue", "purple").
 #'
+#' Several out-of-the-box palettes are available; see \code{multicolour::palettes}.
+#'
 #' Must all be \href{https://github.com/r-lib/crayon#256-colours}{\code{crayon}}-supported
-#' colours. Any colours in \code{colors()} or hex values (see \code{?rgb})
+#' colours. Any colours in \code{colours()} or hex values (see \code{?rgb})
 #' are fair game.
-#' @param type (character) Message (default), warning, or string.
+#' @param type (character) "message" (the default), "warning", "string", or "rmd". If "rmd" is used, the type of the RMarkdown document should be \code{html_document} the chunk option \code{results = "asis"} should be used.
 #' @param direction (character) How should the colours be spread? One of
 #' "horizontal" or "vertical".
 #' @param recycle_chars (logical) Should the vector of colours supplied apply to the entire string or
 #' should it apply to each individual character (if \code{direction} is vertical)
 #' or line (if \code{direction} is horizontal), and be recycled?
+#' @param add_leading_newline Should a newline be added at the beginning of the text? Useful for \code{cowsay} animals when \code{type = "rmd"}.
 #' @param ... Further args.
 #'
 #' @details This function evenly (ish) divides up your string into
-#' these colours in the order they appear in \code{colours}.
+#' these colours in the order they appear in \code{colors}.
 #'
 #' It cannot be used with RGUI (R.app on some systems).
 #'
@@ -337,8 +358,8 @@ multi_color <- function(txt = "hello world!",
 #'
 #' multi_colour("ahoy")
 #'
-# multi_colour("taste the rainbow",
-#             c("rainbow", "cyan", "cyan", "rainbow"))
+#' multi_colour("taste the rainbow",
+#'             c("rainbow", "cyan", "cyan", "rainbow"))
 #' multi_colour("taste the rainbow",
 #'             c("mediumpurple",
 #'               "rainbow",
@@ -349,8 +370,11 @@ multi_color <- function(txt = "hello world!",
 #'                        rgb(0.2, 0.9, 0.1)))
 #'
 #' multi_colour(
-#'   cowsay::animals[["buffalo"]],
+#'   things$buffalo,
 #'   c("mediumorchid4", "dodgerblue1", "lemonchiffon1"))
+#'
+#' # Built-in colour palette
+#' multi_colour(things$cow, colours = palettes$lacroix)
 #'
 #' multi_colour(cowsay:::rms, sample(colours(), 10))
 #'

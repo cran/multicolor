@@ -19,7 +19,7 @@ use_color <- function() {
 }
 
 inside_knitr <- function() {
-  isTRUE(getOption('knitr.in.progress'))
+  isTRUE(getOption("knitr.in.progress"))
 }
 
 # Internal crayon functions
@@ -98,6 +98,10 @@ add_newlines <- function(tbl) {
     )
 }
 
+add_css <- function(txt, font_fam = "Monaco") {
+  glue::glue("<div style='font-family: {font_fam};'> {txt} </div>")
+}
+
 #' Remove the first instance of a newline from a string
 #'
 #' @param s (character) A string
@@ -156,3 +160,23 @@ insert_rainbow <- function(clr) {
   }
   return(clr)
 }
+
+
+
+#' Out-of-the-box Color Palettes
+#'
+#' Take the string "rainbow" and replace it with c("red", "orange", "yellow", "green", "blue", "purple")
+#'
+#' @return A character vector of color values.
+#' @export
+#'
+#' @examples
+#'
+#' multi_color(things$cat, colors = palettes$lacroix)
+
+palettes <- list(
+  lacroix = c("#EF7C12", "#F4B95A", "#009F3F", "#8FDA04", "#AF6125", "#F4E3C7", "#B25D91", "#EFC7E6", "#EF7C12", "#F4B95A"),
+  magma = c("#51127CE6", "#6B1D81E6", "#852781E6", "#A1307EE6", "#BD3977E6", "#D8456CE6", "#ED5A5FE6", "#F9785DE6", "#FD9769E6", "#FEB77EE6"),
+  grandbudapest = c("#F1BB7B", "#F59E74", "#F9816D", "#FD6467", "#C74B4C", "#913232", "#5B1A18", "#833721", "#AC542C", "#D67236"),
+  ghibli = c("#4D4140", "#596F7E", "#168B98", "#ED5B67", "#E27766", "#DAAD50", "#EAC3A6")
+)

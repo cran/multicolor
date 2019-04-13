@@ -38,22 +38,24 @@ test_that("baseline works", {
 
   expect_error(
     suppressMessages(
-      multi_color(colors = c(
-        "seafoamgreen",
-        "green"
-      )) # bad colors
-    ),
-
-    expect_error(
-      suppressMessages(
-        multi_color(
-          colors = c(
-            "maroon4", # no maroon5. conspiracy?
-            "bisque2"
-          ),
-          direction = "one"
-        ) # bad direction
+      multi_color(
+        colors = c(
+          "seafoamgreen",
+          "green"
+        ) # bad colors
       )
+    )
+  )
+
+  expect_error(
+    suppressMessages(
+      multi_color(
+        colors = c(
+          "maroon4", # no maroon5. conspiracy?
+          "bisque2"
+        ),
+        direction = "one"
+      ) # bad direction
     )
   )
 
@@ -78,9 +80,10 @@ test_that("baseline works", {
 
   expect_equal(
     multi_color("Why should Caesar get to stomp around like a giant, while the rest of us try not to get smushed under his big feet? What's so great about Caesar? Brutus is just as cute as Caesar. Brutus is just as smart as Caesar. People totally like Brutus just as much as they like Caesar.", type = "rmd"),
-    "<span style='color: #FF0000;'>Why should Caesar get to stomp around like a g</span><span style='color: #FFAF00;'>iant, while the rest of us try not to get smus</span><span style='color: #FFFF00;'>hed under his big feet? What's so great about </span><span style='color: #00FF00;'>Caesar? Brutus is just as cute as Caesar. Bru</span><span style='color: #0000FF;'>tus is just as smart as Caesar. People totally</span><span style='color: #AF00FF;'> like Brutus just as much as they like Caesar.</span>"
+    noquote("<span style='color: #FF0000;'>Why&nbsp;should&nbsp;Caesar&nbsp;get&nbsp;to&nbsp;stomp&nbsp;around&nbsp;like&nbsp;a&nbsp;g</span><span style='color: #FFAF00;'>iant,&nbsp;while&nbsp;the&nbsp;rest&nbsp;of&nbsp;us&nbsp;try&nbsp;not&nbsp;to&nbsp;get&nbsp;smus</span><span style='color: #FFFF00;'>hed&nbsp;under&nbsp;his&nbsp;big&nbsp;feet?&nbsp;What's&nbsp;so&nbsp;great&nbsp;about&nbsp;</span><span style='color: #00FF00;'>Caesar?&nbsp;Brutus&nbsp;is&nbsp;just&nbsp;as&nbsp;cute&nbsp;as&nbsp;Caesar.&nbsp;Bru</span><span style='color: #0000FF;'>tus&nbsp;is&nbsp;just&nbsp;as&nbsp;smart&nbsp;as&nbsp;Caesar.&nbsp;People&nbsp;totally</span><span style='color: #AF00FF;'>&nbsp;like&nbsp;Brutus&nbsp;just&nbsp;as&nbsp;much&nbsp;as&nbsp;they&nbsp;like&nbsp;Caesar.</span>")
   )
 })
+
 
 test_that("colors(), including grays, rainbow, and rbg work", {
   expect_silent(
@@ -123,6 +126,7 @@ test_that("colors(), including grays, rainbow, and rbg work", {
   )
 })
 
+
 test_that("integration with cowsay", {
   expect_silent(
     suppressMessages(cowsay::say(
@@ -140,6 +144,13 @@ test_that("integration with cowsay", {
         by_color = colors()
       )
     )
+  )
+})
+
+
+test_that("logo", {
+  expect_message(
+    multicolor_logo()
   )
 })
 

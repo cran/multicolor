@@ -15,14 +15,19 @@ Apply multiple colors to your messages, warnings, and errors. Built on
 the [`crayon`](https://github.com/r-lib/crayon) package. Pairs nicely
 with [`cowsay`](https://github.com/sckott/cowsay). The [blog
 post](https://dobb.ae/2018/07/19/how-does-multicolor-actually-work/) has
-a bit of backstory and walkthrough of how it
-works.
+a bit of backstory and walkthrough of how it works.
+
+**✨ New ✨:** *`multicolor` 0.1.2 now supports RMarkdown with `type =
+"rmd"`. See package vignette `vignette("rmd", "multicolor")` for
+examples.*
 
 <p align="left">
 
 <img src="https://media.giphy.com/media/8YNM4kP4NnFrvkIhVM/giphy.gif" alt="whale" height="310px">
 
 </p>
+
+<br>
 
 ### Installation
 
@@ -43,7 +48,9 @@ environments. RStudio or any terminal should work fine<sup>1</sup>.
 [RMarkdown](https://github.com/aedobbyn/multicolor/blob/dev/vignettes/rmd.Rmd)
 is also in play 👍.
 
-## Usage
+<br>
+
+### Usage
 
 ``` r
 library(multicolor)
@@ -72,6 +79,8 @@ argument.
 <img src="https://media.giphy.com/media/7Wsh1CNjLSS0ddgSnl/giphy.gif" height="310px" alt="chicken">
 
 </p>
+
+<br>
 
 #### Options
 
@@ -123,9 +132,7 @@ multi_color("The wild avocado grows in subtropical jungles, so the new sprout ha
 
 </p>
 
-You can use [`multicolor` in RMarkdown
-documents](https://github.com/aedobbyn/multicolor/blob/dev/vignettes/rmd.Rmd)
-with `type = "rmd"`.
+<br>
 
 ### ASCII art with [`cowsay`](https://github.com/sckott/cowsay)
 
@@ -201,6 +208,42 @@ say(what =
 <img src="./man/img/foo_to_bar.jpg" alt="foo_to_bar" height="210px">
 
 </p>
+
+<br>
+
+### Reshaping Text
+
+`multicolor` includes functions to reshape text strings to create
+visually interesting designs. `center_string` centers text strings
+within the console, while `triangle_string` can create upward and
+downward pointing triangles of varying width. These can be combined with
+`multi_color` to create visuals such as these:
+
+``` r
+triangle_string(ipsum, step = 4, maxlen = 11, display = TRUE) %>%
+    center_string() %>%
+    multi_color(direction = "horizontal", viridis::plasma(n = 6, direction = -1, begin = 0.3))
+```
+
+<p align="left">
+
+<img src="./man/img/lorem_triangle_up.png" alt="triangle_up" height="210px">
+
+</p>
+
+``` r
+triangle_string(ipsum, step = -4, maxlen = 56, display = TRUE) %>%
+    center_string() %>%
+    multi_color(direction = "horizontal", viridis::inferno(n = 8, direction = -1, begin = 0.3))
+```
+
+<p align="left">
+
+<img src="./man/img/lorem_triangle_down.png" alt="triangle_down" height="235px">
+
+</p>
+
+<br>
 
 That’s it\! PRs & bug reports v welcome. 🎨
 
