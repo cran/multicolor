@@ -12,32 +12,62 @@
 
 
 
-<title>rmd.utf8</title>
+<title>rmd.knit</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
-
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -46,9 +76,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -102,6 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
+
 
 
 
@@ -302,13 +333,13 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <div id="multicolor-your-rmarkdown-html-documents" class="section level1">
 <h1><span style="color: #FF0000;">mu</span><span style="color: #FFAF00;">lt</span><span style="color: #FFFF00;">i</span><span style="color: #00FF00;">co</span><span style="color: #0000FF;">l</span><span style="color: #AF00FF;">or</span> your RMarkdown HTML documents!</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(multicolor)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">library</span>(multicolor)</span></code></pre></div>
 <div style="font-family: Monaco;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">multi_color</span>(things<span class="op">$</span>buffalo, </a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">            <span class="dt">colors =</span> palettes<span class="op">$</span>grandbudapest, </a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">            <span class="dt">type =</span> <span class="st">&quot;rmd&quot;</span>, </a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">            <span class="dt">add_leading_newline =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>[1] <br><span style="color: #FFD787;"> —-</span><span style="color: #FFAF87;">——–</span><span style="color: #FF8787;">– </span><span><br></span><span style="color: #FFD787;">%s </span><span><br></span><span style="color: #FFD787;"> —-</span><span style="color: #FFAF87;">——–</span><span style="color: #FF8787;">–</span><span><br></span><span style="color: #FFD787;">    \</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;"> \</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">   \</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">        </span><span style="color: #FF8787;">     </span><span style="color: #D75F5F;"> ̲.-</span><span style="color: #AF5F5F;">‘‘‘‘</span><span style="color: #870000;">’-,̲</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">    ̲,.,</span><span style="color: #FF8787;">̲ ,-’</span><span style="color: #D75F5F;">‘   </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">    ‘</span><span style="color: #AF5F00;">’-.,</span><span style="color: #D75F5F;">̲</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">  /)    </span><span style="color: #FF8787;"> (   </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">     </span><span style="color: #AF5F00;">   ’</span><span style="color: #D75F5F;">‘‘-.</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;"> ((     </span><span style="color: #FF8787;"> ) ) </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">     </span><span style="color: #AF5F00;">    </span><span style="color: #D75F5F;">    </span><span style="color: #FF875F;">‘\</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">   \)   </span><span style="color: #FF8787;"> (̲/ </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">     </span><span style="color: #AF5F00;">    </span><span style="color: #D75F5F;">    </span><span style="color: #FF875F;">  )\</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">   |    </span><span style="color: #FF8787;">   /)</span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">   ’ </span><span style="color: #AF5F00;">   ,</span><span style="color: #D75F5F;">’   </span><span style="color: #FF875F;"> / \</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">   ‘\   </span><span style="color: #FF8787;"> ^’  </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">  ’  </span><span style="color: #AF5F00;">   (</span><span style="color: #D75F5F;">    </span><span style="color: #FF875F;">/  ))</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">     |  </span><span style="color: #FF8787;">    ̲</span><span style="color: #D75F5F;">/\ ,</span><span style="color: #AF5F5F;">    </span><span style="color: #870000;"> /   </span><span style="color: #AF5F00;"> ,,‘</span><span style="color: #D75F5F;">\   </span><span style="color: #FF875F;">(  &quot;‘</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">     \Y,</span><span style="color: #FF8787;">   | </span><span style="color: #D75F5F;">  \ </span><span style="color: #AF5F5F;"> \  </span><span style="color: #870000;">| ‘‘‘</span><span style="color: #AF5F00;">‘| /</span><span style="color: #D75F5F;"> \̲ </span><span style="color: #FF875F;">\</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">       ‘</span><span style="color: #FF8787;">)̲/  </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">\  \</span><span style="color: #870000;">  )  </span><span style="color: #AF5F00;">  ( </span><span style="color: #D75F5F;">&gt;  (</span><span style="color: #FF875F;"> &gt;</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">        </span><span style="color: #FF8787;">     </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;"> \( </span><span style="color: #870000;">\(   </span><span style="color: #AF5F00;">  |/</span><span style="color: #D75F5F;">   |</span><span style="color: #FF875F;">/</span><span><br></span><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">     mic</span><span style="color: #FF8787;"> &amp; dw</span><span style="color: #D75F5F;">b  /</span><span style="color: #AF5F5F;">̲(/̲</span><span style="color: #870000;">(    </span><span style="color: #AF5F00;">/̲( </span><span style="color: #D75F5F;"> /̲(</span><span><br></span><span style="color: #FFD787;">    </span><span><br></span></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">multi_color</span>(things<span class="op">$</span>buffalo, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>            <span class="dt">colors =</span> palettes<span class="op">$</span>grandbudapest, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>            <span class="dt">type =</span> <span class="st">&quot;rmd&quot;</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>            <span class="dt">add_leading_newline =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>[1] <br><span style="color: #FFD787;"> —-</span><span style="color: #FFAF87;">——–</span><span style="color: #FF8787;">– </span><br><span style="color: #FFD787;">%s </span><br><span style="color: #FFD787;"> —-</span><span style="color: #FFAF87;">——–</span><span style="color: #FF8787;">–</span><br><span style="color: #FFD787;">    \</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;"> \</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">   \</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">        </span><span style="color: #FF8787;">     </span><span style="color: #D75F5F;"> ̲.-</span><span style="color: #AF5F5F;">‘‘‘‘</span><span style="color: #870000;">’-,̲</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">    ̲,.,</span><span style="color: #FF8787;">̲ ,-’</span><span style="color: #D75F5F;">‘   </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">    ‘</span><span style="color: #AF5F00;">’-.,</span><span style="color: #D75F5F;">̲</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">  /)    </span><span style="color: #FF8787;"> (   </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">     </span><span style="color: #AF5F00;">   ’</span><span style="color: #D75F5F;">‘‘-.</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;"> ((     </span><span style="color: #FF8787;"> ) ) </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">     </span><span style="color: #AF5F00;">    </span><span style="color: #D75F5F;">    </span><span style="color: #FF875F;">‘\</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">   \)   </span><span style="color: #FF8787;"> (̲/ </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">     </span><span style="color: #AF5F00;">    </span><span style="color: #D75F5F;">    </span><span style="color: #FF875F;">  )\</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">   |    </span><span style="color: #FF8787;">   /)</span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">   ’ </span><span style="color: #AF5F00;">   ,</span><span style="color: #D75F5F;">’   </span><span style="color: #FF875F;"> / \</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">   ‘\   </span><span style="color: #FF8787;"> ^’  </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">    </span><span style="color: #870000;">  ’  </span><span style="color: #AF5F00;">   (</span><span style="color: #D75F5F;">    </span><span style="color: #FF875F;">/  ))</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">     |  </span><span style="color: #FF8787;">    ̲</span><span style="color: #D75F5F;">/\ ,</span><span style="color: #AF5F5F;">    </span><span style="color: #870000;"> /   </span><span style="color: #AF5F00;"> ,,‘</span><span style="color: #D75F5F;">\   </span><span style="color: #FF875F;">(  &quot;‘</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">     \Y,</span><span style="color: #FF8787;">   | </span><span style="color: #D75F5F;">  \ </span><span style="color: #AF5F5F;"> \  </span><span style="color: #870000;">| ‘‘‘</span><span style="color: #AF5F00;">‘| /</span><span style="color: #D75F5F;"> \̲ </span><span style="color: #FF875F;">\</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">       ‘</span><span style="color: #FF8787;">)̲/  </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;">\  \</span><span style="color: #870000;">  )  </span><span style="color: #AF5F00;">  ( </span><span style="color: #D75F5F;">&gt;  (</span><span style="color: #FF875F;"> &gt;</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">        </span><span style="color: #FF8787;">     </span><span style="color: #D75F5F;">    </span><span style="color: #AF5F5F;"> \( </span><span style="color: #870000;">\(   </span><span style="color: #AF5F00;">  |/</span><span style="color: #D75F5F;">   |</span><span style="color: #FF875F;">/</span><br><span style="color: #FFD787;">     </span><span style="color: #FFAF87;">     mic</span><span style="color: #FF8787;"> &amp; dw</span><span style="color: #D75F5F;">b  /</span><span style="color: #AF5F5F;">̲(/̲</span><span style="color: #870000;">(    </span><span style="color: #AF5F00;">/̲( </span><span style="color: #D75F5F;"> /̲(</span><br><span style="color: #FFD787;">    </span><br></p>
 </div>
 <p><br></p>
 <p>with <code>type = &quot;rmd&quot;</code>.</p>
@@ -316,36 +347,36 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="chunk-output" class="section level2">
 <h2>Chunk Output</h2>
 <div style="font-family: Monaco;">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">multi_color</span>(</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="st">&quot; Brutus is just as smart as Caesar, </span><span class="ch">\n</span><span class="st"> people totally like Brutus just as much as they like Caesar, </span><span class="ch">\n</span><span class="st"> and when did it become okay for one person </span><span class="ch">\n</span><span class="st"> to be the boss of everybody because </span><span class="ch">\n</span><span class="st"> that's not what Rome is about! </span><span class="ch">\n</span><span class="st"> We should totally just STAB CAESAR!&quot;</span>,</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  </a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">colors =</span> <span class="kw">c</span>(wesanderson<span class="op">::</span>wes_palettes<span class="op">$</span>GrandBudapest2, wesanderson<span class="op">::</span>wes_palettes<span class="op">$</span>GrandBudapest2),</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  </a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">  <span class="dt">type =</span> <span class="st">&quot;rmd&quot;</span>,</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">add_leading_newline =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">  </a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">)</a></code></pre></div>
-<p>[1] <br><span style="color: #FFAFD7;"> Brutus </span><span style="color: #D7D7FF;">is just </span><span style="color: #FFAFAF;">as smar</span><span style="color: #87AFD7;">t as Cae</span><span style="color: #FFAFD7;">sar, </span><span><br></span><span style="color: #FFAFD7;"> people </span><span style="color: #D7D7FF;">totally </span><span style="color: #FFAFAF;">like Br</span><span style="color: #87AFD7;">utus jus</span><span style="color: #FFAFD7;">t as muc</span><span style="color: #D7D7FF;">h as th</span><span style="color: #FFAFAF;">ey like </span><span style="color: #87AFD7;">Caesar, </span><span><br></span><span style="color: #FFAFD7;"> and whe</span><span style="color: #D7D7FF;">n did it</span><span style="color: #FFAFAF;"> become</span><span style="color: #87AFD7;"> okay fo</span><span style="color: #FFAFD7;">r one pe</span><span style="color: #D7D7FF;">rson </span><span><br></span><span style="color: #FFAFD7;"> to be t</span><span style="color: #D7D7FF;">he boss </span><span style="color: #FFAFAF;">of ever</span><span style="color: #87AFD7;">ybody be</span><span style="color: #FFAFD7;">cause </span><span><br></span><span style="color: #FFAFD7;"> that’s </span><span style="color: #D7D7FF;">not what</span><span style="color: #FFAFAF;"> Rome i</span><span style="color: #87AFD7;">s about!</span><span style="color: #FFAFD7;"> </span><span><br></span><span style="color: #FFAFD7;"> We shou</span><span style="color: #D7D7FF;">ld total</span><span style="color: #FFAFAF;">ly just</span><span style="color: #87AFD7;"> STAB CA</span><span style="color: #FFAFD7;">ESAR!</span><span><br></span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">multi_color</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>  <span class="st">&quot; Brutus is just as smart as Caesar, </span><span class="ch">\n</span><span class="st"> people totally like Brutus just as much as they like Caesar, </span><span class="ch">\n</span><span class="st"> and when did it become okay for one person </span><span class="ch">\n</span><span class="st"> to be the boss of everybody because </span><span class="ch">\n</span><span class="st"> that&#39;s not what Rome is about! </span><span class="ch">\n</span><span class="st"> We should totally just STAB CAESAR!&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>  </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="dt">colors =</span> <span class="kw">c</span>(wesanderson<span class="op">::</span>wes_palettes<span class="op">$</span>GrandBudapest2, wesanderson<span class="op">::</span>wes_palettes<span class="op">$</span>GrandBudapest2),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>  </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>  <span class="dt">type =</span> <span class="st">&quot;rmd&quot;</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>  <span class="dt">add_leading_newline =</span> <span class="ot">TRUE</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>)</span></code></pre></div>
+<p>[1] <br><span style="color: #FFAFD7;"> Brutus </span><span style="color: #D7D7FF;">is just </span><span style="color: #FFAFAF;">as smar</span><span style="color: #87AFD7;">t as Cae</span><span style="color: #FFAFD7;">sar, </span><br><span style="color: #FFAFD7;"> people </span><span style="color: #D7D7FF;">totally </span><span style="color: #FFAFAF;">like Br</span><span style="color: #87AFD7;">utus jus</span><span style="color: #FFAFD7;">t as muc</span><span style="color: #D7D7FF;">h as th</span><span style="color: #FFAFAF;">ey like </span><span style="color: #87AFD7;">Caesar, </span><br><span style="color: #FFAFD7;"> and whe</span><span style="color: #D7D7FF;">n did it</span><span style="color: #FFAFAF;"> become</span><span style="color: #87AFD7;"> okay fo</span><span style="color: #FFAFD7;">r one pe</span><span style="color: #D7D7FF;">rson </span><br><span style="color: #FFAFD7;"> to be t</span><span style="color: #D7D7FF;">he boss </span><span style="color: #FFAFAF;">of ever</span><span style="color: #87AFD7;">ybody be</span><span style="color: #FFAFD7;">cause </span><br><span style="color: #FFAFD7;"> that’s </span><span style="color: #D7D7FF;">not what</span><span style="color: #FFAFAF;"> Rome i</span><span style="color: #87AFD7;">s about!</span><span style="color: #FFAFD7;"> </span><br><span style="color: #FFAFD7;"> We shou</span><span style="color: #D7D7FF;">ld total</span><span style="color: #FFAFAF;">ly just</span><span style="color: #87AFD7;"> STAB CA</span><span style="color: #FFAFD7;">ESAR!</span><br></p>
 </div>
 <p><br></p>
 <p>You can keep the output monospace by wrapping a chunk in, e.g.,</p>
-<p><code>&lt;div style='font-family: Monaco; font-size = 0.8em'&gt;&lt;/div&gt;</code>.</p>
+<p><code>&lt;div style=&#39;font-family: Monaco; font-size = 0.8em&#39;&gt;&lt;/div&gt;</code>.</p>
 <p><br></p>
-<p>Or use a <a href="https://yihui.name/knitr/hooks/"><code>knitr</code> hook</a> such as</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">knitr<span class="op">::</span>knit_hooks<span class="op">$</span><span class="kw">set</span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">mc_rmd =</span> <span class="cf">function</span>(before, options, envir) {</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="cf">if</span> (before) {</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">       <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;&lt;div style='font-family: Monaco;'&gt;&quot;</span>))</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">    } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">       <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;&lt;/div&gt;&quot;</span>))</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">    }</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">  }</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">)</a></code></pre></div>
+<p>Or use a <a href="https://yihui.org/knitr/hooks/"><code>knitr</code> hook</a> such as</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>knitr<span class="op">::</span>knit_hooks<span class="op">$</span><span class="kw">set</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>  <span class="dt">mc_rmd =</span> <span class="cf">function</span>(before, options, envir) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="cf">if</span> (before) {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>       <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;&lt;div style=&#39;font-family: Monaco;&#39;&gt;&quot;</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    } <span class="cf">else</span> {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>       <span class="kw">return</span>(<span class="kw">paste</span>(<span class="st">&quot;&lt;/div&gt;&quot;</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    }</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  }</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>)</span></code></pre></div>
 <p>which can be specified in the <code>chunk</code> options with <code>mc_rmd=TRUE</code>.</p>
 <p><br></p>
 </div>
-<div id="headeroutput" class="section level2">
+<div id="header-output" class="section level2">
 <h2><span style="color: #FF0000;">Hea</span><span style="color: #00AFAF;">de</span><span style="color: #FFD700;">r O</span><span style="color: #FFAF00;">ut</span><span style="color: #87D7FF;">put</span></h2>
 <p>is also fair game,</p>
 <ul>
@@ -358,15 +389,15 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h2>Deets</h2>
 <p>In <code>multi_color</code>, setting <code>type</code> equal to <code>&quot;rmd&quot;</code> uses the <a href="https://github.com/brodieG/fansi"><code>fansi</code></a> package to produce HTML.</p>
 <p><br></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">multi_color</span>(<span class="dt">type =</span> <span class="st">&quot;rmd&quot;</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; [1] &lt;span style='color: #FF0000;'&gt;he&lt;/span&gt;&lt;span style='color: #FFAF00;'&gt;ll&lt;/span&gt;&lt;span style='color: #FFFF00;'&gt;o&amp;nbsp;&lt;/span&gt;&lt;span style='color: #00FF00;'&gt;wo&lt;/span&gt;&lt;span style='color: #0000FF;'&gt;rl&lt;/span&gt;&lt;span style='color: #AF00FF;'&gt;d!&lt;/span&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">multi_color</span>(<span class="dt">type =</span> <span class="st">&quot;rmd&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">#&gt; [1] &lt;span style=&#39;color: #FF0000;&#39;&gt;he&lt;/span&gt;&lt;span style=&#39;color: #FFAF00;&#39;&gt;ll&lt;/span&gt;&lt;span style=&#39;color: #FFFF00;&#39;&gt;o&amp;nbsp;&lt;/span&gt;&lt;span style=&#39;color: #00FF00;&#39;&gt;wo&lt;/span&gt;&lt;span style=&#39;color: #0000FF;&#39;&gt;rl&lt;/span&gt;&lt;span style=&#39;color: #AF00FF;&#39;&gt;d!&lt;/span&gt;</span></span></code></pre></div>
 <p><br></p>
 <p>To display the colored text, the <code>knitr</code> option that should be applied to the chunk or document is the <code>results = &quot;asis&quot;</code> option.</p>
 <p>You can do this document-wide with:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">results =</span> <span class="st">&quot;asis&quot;</span>)</a></code></pre></div>
-<p>The chunk containing this option can be hidden with the <code>echo = FALSE</code> option. More on <a href="https://yihui.name/knitr/options/"><code>knitr</code> options</a>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">results =</span> <span class="st">&quot;asis&quot;</span>)</span></code></pre></div>
+<p>The chunk containing this option can be hidden with the <code>echo = FALSE</code> option. More on <a href="https://yihui.org/knitr/options/"><code>knitr</code> options</a>.</p>
 <p>Another global option that should be set is:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">crayon.enabled =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">options</span>(<span class="dt">crayon.enabled =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 </div>
