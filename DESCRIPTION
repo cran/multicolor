@@ -1,7 +1,7 @@
 Package: multicolor
 Type: Package
 Title: Add Multiple Colors to your Console & RMarkdown Output
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: c(
     person("Amanda", "Dobbyn", email = "amanda.e.dobbyn@gmail.com", role = c("aut", "cre")),
     person("Hernando", "Cortina", email = "hch@alum.mit.edu", role = c("aut"),
@@ -20,9 +20,9 @@ Suggests: covr, fansi, knitr, rmarkdown, testthat, viridisLite,
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2021-11-04 16:36:47 UTC; amanda
+Packaged: 2023-01-02 02:17:41 UTC; amanda
 Author: Amanda Dobbyn [aut, cre],
   Hernando Cortina [aut] (<https://orcid.org/0000-0001-6790-4870>)
 Maintainer: Amanda Dobbyn <amanda.e.dobbyn@gmail.com>
 Repository: CRAN
-Date/Publication: 2021-11-04 16:50:02 UTC
+Date/Publication: 2023-01-05 19:30:02 UTC

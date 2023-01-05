@@ -1,4 +1,4 @@
-c1cf80e454264f490555cd7d287a0d0e *DESCRIPTION
+b4c25d1b8d5705eca2c158b90bad38fb *DESCRIPTION
 10b6820aae556b687fd4d709fd3accd7 *LICENSE
 d0668763c2306266460156fc11fc786b *NAMESPACE
 e989d14b9d55577798db909e105187ac *NEWS.md
@@ -9,13 +9,13 @@ bec5766b49cf098f249d45b1fe5cecb9 *R/globals.R
 24ef7683c21b4396e92cd8960e218d69 *R/newhope.R
 637576ec3b3c355d1c7a4e36887e2f83 *R/textshapes.R
 ef1178fedabeb337aba8563afd6e43fc *R/things.R
-44854eaa2d6ae3393d3372d3412c716d *R/utils.R
+7c5b2fee9b1e1c7413314d73326809e0 *R/utils.R
 a89a751d432f72cf8c8eaa0438a7831d *R/zzz.R
 4c80e5c766b48840ad4f8ee8ec9fc475 *README.md
 e022beebf07fd3bcfae12d54fccfb02c *build/vignette.rds
 f7c29cb385e26b77c5f1ac4c94c25049 *inst/doc/rmd.R
 524b23ab8f67d274bc687b75ad71ae61 *inst/doc/rmd.Rmd
-5492e1682e301a314ec43c529b776121 *inst/doc/rmd.html
+2fdc682ecc137491d36b71fa00809713 *inst/doc/rmd.html
 e35f70e77022f70240a639004a6f1249 *man/center_string.Rd
 076de73cf87f8519aa59e8a1db32e0fd *man/crawl.Rd
 547b5aeddc1de0c47a283afc59b24a22 *man/img/avocado_a.jpg
