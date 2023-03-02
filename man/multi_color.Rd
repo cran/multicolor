@@ -53,7 +53,7 @@ these colors in the order they appear in \code{colors}.
 It cannot be used with RGUI (R.app on some systems).
 }
 \examples{
-\dontrun{
+\donttest{
 multi_color()
 
 multi_color("ahoy")
@@ -85,7 +85,7 @@ multi_color(
 # Built-in color palette
 multi_color(things$cow, colors = palettes$lacroix)
 
-multi_color(cowsay:::rms, sample(colors(), 10))
+multi_color(cowsay::animals[[sample(1:length(cowsay::animals), 1)]], sample(colors(), 10))
 
 # Mystery Bulgarian animal
 multi_color(things[[sample(length(things), 1)]],

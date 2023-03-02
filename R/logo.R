@@ -3,7 +3,7 @@
 #' @param colors Vector of colors for the logo. Defaults to "random" which randomly selects one of the \code{palette}s.
 #' @param ... Arguments passed to \code{multi_color}.
 #'
-#' @md
+#' @return The colorful package logo on load
 #' @export
 #' @details This function displays the multicolor package logo
 #' in a randomly selected color palette from a pre-selected list of colors.
@@ -13,7 +13,7 @@
 #' multicolor_logo(recycle_chars = TRUE)
 #' multicolor_logo(colors = c("red", "blue"))
 multicolor_logo <- function(colors = "random", ...) {
-  if (use_color() == FALSE || inside_knitr()) {
+  if (use_color_startup() == FALSE || inside_knitr()) {
     return(invisible)
   }
 

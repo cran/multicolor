@@ -29,7 +29,7 @@
 #' @return A string if \code{type} is "string", or colored
 #' text if type is "message" or "warning"
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' multi_color()
 #'
 #' multi_color("ahoy")
@@ -61,7 +61,7 @@
 #' # Built-in color palette
 #' multi_color(things$cow, colors = palettes$lacroix)
 #'
-#' multi_color(cowsay:::rms, sample(colors(), 10))
+#' multi_color(cowsay::animals[[sample(1:length(cowsay::animals), 1)]], sample(colors(), 10))
 #'
 #' # Mystery Bulgarian animal
 #' multi_color(things[[sample(length(things), 1)]],
@@ -263,9 +263,9 @@ multi_color <- function(txt = "hello world!",
       dplyr::mutate(
         tagged = dplyr::case_when(
           tag_type == "open" ~
-          stringr::str_c(tag, split_chars, collapse = ""),
+            stringr::str_c(tag, split_chars, collapse = ""),
           tag_type == "close" ~
-          stringr::str_c(split_chars, tag, collapse = ""),
+            stringr::str_c(split_chars, tag, collapse = ""),
           TRUE ~ split_chars
         )
       ) %>%
@@ -292,6 +292,11 @@ multi_color <- function(txt = "hello world!",
 
   if (max(by_line$line_id) == 1) {
     out <- out %>% nix_first_newline()
+
+    # Add close tag if it's not there yet for single lines
+    if (!stringr::str_detect(out, "\\\033\\[39m$")) {
+      out <- stringr::str_c(out, close_tag)
+    }
   }
 
   # Set warning length so it's not truncated
@@ -363,7 +368,7 @@ multi_color <- function(txt = "hello world!",
 #' @return A string if \code{type} is "string", or coloured
 #' text if type is "message" or "warning"
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' multi_colour()
 #'
 #' multi_colour("ahoy")
@@ -395,7 +400,7 @@ multi_color <- function(txt = "hello world!",
 #' # Built-in colour palette
 #' multi_colour(things$cow, colours = palettes$lacroix)
 #'
-#' multi_colour(cowsay:::rms, sample(colours(), 10))
+#' multi_color(cowsay::animals[[sample(1:length(cowsay::animals), 1)]], sample(colours(), 10))
 #'
 #' # Mystery Bulgarian animal
 #' multi_colour(things[[sample(length(things), 1)]],
